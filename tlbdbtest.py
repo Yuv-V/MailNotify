@@ -14,6 +14,8 @@ import pymysql
 import datetime
 import dotenv
 import os
+import sys
+import unidecode
 
 dotenv.load_dotenv()
 
@@ -30,6 +32,8 @@ chrome_driver = chromepath
 driver = webdriver.Chrome(options=options,service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
 
 today = datetime.datetime.now()
+
+#daysago = int(sys.argv[1])
 
 threedaysago = "0" + str(today.month) + "/" + str(today.day-3) + "/" + str(today.year)
  
@@ -82,8 +86,9 @@ while i < rows:
 
     time.sleep(6)
 
+    outputString = unidecode.unidecode(fnamelname)
     inputFirstlast = driver.find_element(By.ID, "emailUpdate_name1_1")
-    inputFirstlast.send_keys(fnamelname)
+    inputFirstlast.send_keys(outputString)
 
     time.sleep(7)
 
