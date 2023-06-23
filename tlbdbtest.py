@@ -33,9 +33,16 @@ driver = webdriver.Chrome(options=options,service=ChromiumService(ChromeDriverMa
 
 today = datetime.datetime.now()
 
-#daysago = int(sys.argv[1])
+if len(sys.argv) == 2: #If we need to update a different number of days ago
+  print(len(sys.argv))
+  daysago = int(sys.argv[1])
+else:                  #If we are just doing a normal run
+  print(len(sys.argv))
+  daysago = 3
 
-threedaysago = "0" + str(today.month) + "/" + str(today.day-3) + "/" + str(today.year)
+print(daysago)
+
+threedaysago = "0" + str(today.month) + "/" + str(today.day-daysago) + "/" + str(today.year)
  
 "06/15/2023"
 # Create a connection object
